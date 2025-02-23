@@ -40,9 +40,17 @@ void maxK(int *arr, int n, int *max, int k) {
 
 // פונקציה ראשית (main) לבדיקה
 int main() {
-
+iteration 1                        55    42  4   4
     int a[] = {2, 15, 3, 142, 5, 1, 1024, 55, 42, 4}; // מערך מקור
+    // size -- removing 4 from the end of the array.
+    // so after first iteration array looks like that
+    //         {2, 15, 3, 142, 5, 1, 55, 42, 4, 4};
 
+// iteration 2 the biggest number is 142, his index is 3
+//             5   1  55  42  4  4  4
+// {2, 15, 3, 142, 5, 1, 55, 42, 4, 4};
+// so we get 
+// {2, 15, 3, 5, 1, 55, 42, 4, 4, 4};
     int m[4]; // מערך לתוצאה
 
     maxK(a, 10, m, 4); // קריאה לפונקציה
