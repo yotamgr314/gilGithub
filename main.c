@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <stdlib.h>
 
 // פונקציה להזזת איברים שמאלה
 void f(int *a, int j) {
@@ -10,19 +9,16 @@ void f(int *a, int j) {
 
 // פונקציה למציאת k הערכים הגדולים ביותר
 void maxK(int *arr, int n, int *max, int k) {
-    // יצירת עותק של arr כדי לשמור על הסדר המקורי
-    int *temp = (int *)malloc(n * sizeof(int));
-    if (!temp) {
-        printf("Error: Memory allocation failed\n");
-        return;
+    int temp[100]; // יצירת מערך זמני (בהנחה שהמערך לא יעלה על 100)
+    
+    // העתקת המערך הגדול למערך temp
+    for (int i = 0; i < n; i++) {
+        temp[i] = arr[i];
     }
 
-    // העתקת הערכים ל-temp
-    for (int i = 0; i < n; i++)
-        temp[i] = arr[i];
+    int size = n; // גודל נוכחי של temp
 
-    int size = n; // גודל המערך שאנו עובדים עליו
-
+    // חיפוש k הערכים הגדולים ביותר
     for (int i = 0; i < k; i++) {
         int maxIdx = 0;
 
@@ -36,12 +32,10 @@ void maxK(int *arr, int n, int *max, int k) {
         // שמירת המספר הגדול במערך max
         max[i] = temp[maxIdx];
 
-        // שימוש בפונקציה f כדי להסיר את הערך שנבחר
+        // שימוש בפונקציה f כדי "להסיר" את הערך מהמערך temp
         f(temp + maxIdx, size - maxIdx - 1);
-        size--; // הקטנת גודל המערך לאחר מחיקת איבר
+        size--; // הקטנת הגודל אחרי ההסרה
     }
-
-    free(temp); // שחרור זיכרון מוקצה
 }
 
 // פונקציית main לבדיקה
@@ -58,15 +52,8 @@ int main() {
     
     printf("\n");
 
-
-    
-    // test
-    printf("test test \n\n");
+    printf("test test ");
     for (int i = 0; i < 10; i++)
-    printf("%d ", a[i]);    
-    
+        printf("%d ", a[i]);
     return 0;
 }
-
-
-
